@@ -1,0 +1,6 @@
+**/.git/
+**/.git/**
+**/.gitignore
+!.config/nvim/.gitignore
+
+.config/nvim/lazyvim.json
