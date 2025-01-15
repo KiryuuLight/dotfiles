@@ -4,3 +4,4 @@
 !.config/nvim/.gitignore
 
 .config/nvim/lazyvim.json
+.config/btop/btop.log
