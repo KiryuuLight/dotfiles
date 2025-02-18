@@ -46,8 +46,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- jq on exit
-vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Escape using j and k' })
 -- Open parent directory for oil
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
@@ -56,8 +54,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = 'Move highlig
 vim.keymap.set('n', '<cr>', 'ciw', { desc = 'Removed current text on new insert' })
 
 -- Obsidian
-vim.keymap.set('n', '<leader>oc', "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>",
-  { desc = 'Obsidian Check Checkbox' })
+vim.keymap.set('n', '<leader>oc', "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", { desc = 'Obsidian Check Checkbox' })
 vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<CR>', { desc = 'Insert Obsidian Template' })
 vim.keymap.set('n', '<leader>od', '<cmd>ObsidianToday<CR>', { desc = 'Creates daily note' })
 vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', { desc = 'Open in Obsidian App' })
@@ -73,7 +70,7 @@ vim.keymap.set('n', '<leader>oq', '<cmd>ObsidianQuickSwitch<CR>', { desc = 'Quic
 local function delete_buffer()
   local current_buffers = vim.api.nvim_list_bufs()
   print(vim.inspect(current_buffers))
-  local bd = require('bufdelete')
+  local bd = require 'bufdelete'
   bd.bufdelete(0, false)
 end
 
