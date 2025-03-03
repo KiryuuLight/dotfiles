@@ -11,44 +11,9 @@ return {
             k = {
               j = '<Esc>',
             },
-            j = {
-              k = '<Esc>',
-              j = false,
-            },
           },
-          c = {
-            j = {
-              k = '<Esc>',
-              j = false,
-            },
-            k = {
-              j = '<Esc>',
-            },
-          },
-          t = {
-            j = {
-              k = '<C-\\><C-n>',
-            },
-            k = {
-              j = '<Esc>',
-            },
-          },
-          v = {
-            j = {
-              k = '<Esc>',
-            },
-            k = {
-              j = '<Esc>',
-            },
-          },
-          s = {
-            j = {
-              k = '<Esc>',
-            },
-            k = {
-              j = '<Esc>',
-            },
-          },
+          t = { j = { false } }, --lazygit navigation fix
+          v = { j = { k = false } }, -- visual select fix
         },
       }
     end,

@@ -4,6 +4,6 @@ return {
     'nvim-lua/plenary.nvim',
   },
   config = function()
-    vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>i', { noremap = true, silent = true, desc = '[L]azyGit' })
+    vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>', { noremap = true, silent = true, desc = '[L]azyGit' })
   end,
 }
