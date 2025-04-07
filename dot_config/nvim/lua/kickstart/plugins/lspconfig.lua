@@ -1,4 +1,11 @@
 -- LSP Plugins
+local get_venv_bin = function()
+  if vim.env.VIRTUAL_ENV then
+    return vim.fn.fnamemodify(vim.env.VIRTUAL_ENV, ':p') .. '/bin/python'
+  end
+  return vim.fn.fnamemodify(vim.env.PWD, ':p') .. '/.venv/bin/python'
+end
+
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -24,7 +31,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -173,8 +180,31 @@ return {
             workingDirectories = { mode = 'auto' },
           },
         },
-        pyright = {},
         ts_ls = {},
+        pyright = {
+          on_init = function(client)
+            -- otherwise no venv packages can be found
+            client.config.settings.python.pythonPath = get_venv_bin()
+
+            client.config.settings.python.venvPath = vim.env.VIRTUAL_ENV or vim.fn.fnamemodify(vim.env.PWD, ':p') .. '/.venv'
+            client.config.settings.python.venv = get_venv_bin()
+          end,
+          -- root_dir = get_root_dir,
+          settings = {
+            useLibraryCodeForTypes = true,
+            verboseOutput = true,
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                -- ignore = { "*" },
+              },
+            },
+          },
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -209,7 +239,11 @@ return {
         'eslint-lsp',
         'css-lsp',
         'html-lsp',
-        'rust_analyzer'
+        'rust_analyzer',
+        'mypy',
+        'ruff',
+        'black',
+        'pyright',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
