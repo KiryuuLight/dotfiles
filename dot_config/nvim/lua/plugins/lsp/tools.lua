@@ -6,10 +6,9 @@ local tools = {
   'css-lsp',
   'html-lsp',
   'rust_analyzer',
-  'mypy',
+  'basedpyright',
   'ruff',
   'black',
-  'pyright',
   'gopls',
 }
 
