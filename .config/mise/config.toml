@@ -1,0 +1,4 @@
+[tools]
+node = { version = "22", postinstall = "corepack enable" }
+python = "3.11"
+uv = "latest"
