@@ -1,0 +1,63 @@
+@import "theme.css";
+
+/* General */
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12px;
+  background-color: @crust;
+  color: @blue;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 5px;
+  margin: 0 2px;
+  color: @blue;
+  min-width: 9px;
+}
+
+#workspaces button.active label {
+  color: @text;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+/* Widgets */
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#battery {
+  padding: 0 7px;
+}
+
+#pulseaudio.muted {
+  padding: 0 7px;
+  color: @red;
+}
+
+#battery.charging {
+  padding: 0 7px;
+  color: @teal;
+}
+
+#battery.plugged {
+  padding: 0 7px;
+  color: @sapphire;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
