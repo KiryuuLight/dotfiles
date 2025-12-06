@@ -1,3 +1,5 @@
+# FZF
+source <(fzf --zsh)
 # Bob Nvim Manager
 export PATH=$PATH:/home/light/.local/share/bob/nvim-bin
 # Zoxide
