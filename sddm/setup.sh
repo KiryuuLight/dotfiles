@@ -11,7 +11,17 @@ THEME_NAME="catppuccin-mocha"
 
 install_dependencies () {
     echo -e "${grey}Installing dependencies with 'pacman'...${reset}"
-    sudo pacman -S --needed sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg
+    sudo pacman -S --needed sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg imagemagick
+}
+
+set_avatar () {
+    read -p "Do you want to set a user avatar? [y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        read -p "Enter username: " username
+        read -p "Enter path to image: " image_path
+        bash "$SHPATH/change_avatar.sh" "$username" "$image_path"
+    fi
 }
 
 copy_files () {
@@ -49,4 +59,5 @@ apply_theme () {
 install_dependencies &&
 copy_files &&
 apply_theme &&
+set_avatar &&
 echo -e "\n${green}Theme successfully installed!${reset}"
