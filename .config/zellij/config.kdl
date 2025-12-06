@@ -219,7 +219,7 @@ plugins {
         format_hide_on_overlength true
         format_left "{mode}#[bg=$mantle] {tabs}"
         format_precedence "lrc"
-        format_right "#[bg=$surface0,fg=$maroon]█#[#[bg=$maroon,fg=$crust]󰃭 #[bg=$surface1,fg=$maroon,bold] {datetime}#[bg=$surface0,fg=$surface1]█"
+        format_right ""
         format_space "#[bg=$mantle]"
         
         mode_enter_search "#[bg=$flamingo,fg=$crust,bold] ENT-SEARCH#[bg=$surfaco,fg=$flamingo]█"
@@ -241,16 +241,16 @@ plugins {
         notification_format_unread "#[bg=surface0,fg=$yellow]█#[bg=$yellow,fg=$crust] #[bg=$surface1,fg=$yellow] {message}#[bg=$surface0,fg=$yellow]█"
         notification_show_interval "10"
         
-        tab_active "#[bg=$surface0,fg=$pink]█#[bg=$pink,fg=$crust,bold]{index} #[bg=$surface1,fg=$pink,bold] {name}{floating_indicator}#[bg=$surface0,fg=$surface1]█"
-        tab_active_fullscreen "#[bg=$surface0,fg=$pink]█#[bg=$pink,fg=$crust,bold]{index} #[bg=$surface1,fg=$pink,bold] {name}{fullscreen_indicator}#[bg=$surface0,fg=$surface1]█"
-        tab_active_sync "#[bg=$surface0,fg=$pink]█#[bg=$pink,fg=$crust,bold]{index} #[bg=$surface1,fg=$pink,bold] {name}{sync_indicator}#[bg=$surface0,fg=$surface1]█"
+        tab_active "#[bg=$mantle,fg=$blue]█#[bg=$blue,fg=$crust,bold]{index} #[bg=$surface0,fg=$blue,bold] {name}{floating_indicator}#[bg=$mantle,fg=$surface0]█"
+        tab_active_fullscreen "#[bg=$mantle,fg=$blue]█#[bg=$blue,fg=$crust,bold]{index} #[bg=$surface0,fg=$blue,bold] {name}{fullscreen_indicator}#[bg=$mantle,fg=$surface0]█"
+        tab_active_sync "#[bg=$mantle,fg=$blue]█#[bg=$blue,fg=$crust,bold]{index} #[bg=$surface0,fg=$blue,bold] {name}{sync_indicator}#[bg=$mantle,fg=$surface0]█"
         
         tab_floating_indicator " 󰹙"
         tab_fullscreen_indicator " 󰊓"
         
-        tab_normal "#[bg=$surface0,fg=$mauve]█#[bg=$mauve,fg=$crust,bold]{index} #[bg=$surface1,fg=$mauve,bold] {name}{floating_indicator}#[bg=$surface0,fg=$surface1]█"
-        tab_normal_fullscreen "#[bg=$surface0,fg=$mauve]█#[bg=$mauve,fg=$crust,bold]{index} #[bg=$surface1,fg=$mauve,bold] {name}{fullscreen_indicator}#[bg=$surface0,fg=$surface1]█"
-        tab_normal_sync "#[bg=$surface0,fg=$mauve]█#[bg=$mauve,fg=$crust,bold]{index} #[bg=$surface1,fg=$mauve,bold] {name}{sync_indicator}#[bg=$surface0,fg=$surface1]█"
+        tab_normal "#[bg=$mantle,fg=$subtext0]█#[bg=$subtext0,fg=$crust,bold]{index} #[bg=$surface0,fg=$subtext0,bold] {name}{floating_indicator}#[bg=$mantle,fg=$surface0]█"
+        tab_normal_fullscreen "#[bg=$mantle,fg=$subtext0]█#[bg=$subtext0,fg=$crust,bold]{index} #[bg=$surface0,fg=$subtext0,bold] {name}{fullscreen_indicator}#[bg=$mantle,fg=$surface0]█"
+        tab_normal_sync "#[bg=$mantle,fg=$subtext0]█#[bg=$subtext0,fg=$crust,bold]{index} #[bg=$surface0,fg=$subtext0,bold] {name}{sync_indicator}#[bg=$mantle,fg=$surface0]█"
         
         tab_separator "#[bg=$mantle] "
         tab_sync_indicator " "
