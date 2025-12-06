@@ -1,9 +1,7 @@
 # Bob Nvim Manager
 export PATH=$PATH:/home/light/.local/share/bob/nvim-bin
-
 # Zoxide
 eval "$(zoxide init zsh)"
-
 # Editor
 export EDITOR='nvim'
 # Mise
@@ -25,8 +23,15 @@ alias ld='eza -lhD --icons=auto'
 alias lt='eza --icons=auto --tree'
 alias p='pnpm'
 alias mkdir='mkdir -p'
+alias config='cd ~/dotfiles-v2/'
 
-source /usr/share/zsh-antidote/antidote.zsh
+# History
+HISTFILE=~/.zsh_history
+
+# Style
+zstyle ':zsh-utils:plugins:history' use-xdg-basedirs no
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Plugins
+source /usr/share/zsh-antidote/antidote.zsh
 antidote load ~/.config/antidote/plugins.txt
