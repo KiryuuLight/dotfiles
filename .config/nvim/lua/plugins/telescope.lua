@@ -64,6 +64,13 @@ return {
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Search by grep' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find existing buffers' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Search current word' })
+      vim.keymap.set('v', '<leader>fw', function()
+        local saved_reg = vim.fn.getreg 'v'
+        vim.cmd [[noautocmd sil norm "vy]]
+        local selection = vim.fn.getreg 'v'
+        vim.fn.setreg('v', saved_reg)
+        builtin.grep_string { search = selection }
+      end, { desc = 'Search selected text' })
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Search Diagnostics' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Search Help' })
 
