@@ -1,0 +1,187 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+GTK_REPO_URL="https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme.git"
+GTK_TEMP_DIR="/tmp/catppuccin-gtk-theme"
+PAPIRUS_FOLDERS_REPO_URL="https://github.com/catppuccin/papirus-folders.git"
+PAPIRUS_FOLDERS_TEMP_DIR="/tmp/catppuccin-papirus-folders"
+KVANTUM_REPO_URL="https://github.com/catppuccin/kvantum.git"
+KVANTUM_TEMP_DIR="/tmp/catppuccin-kvantum"
+PACMAN_DEPS=("sassc" "git" "gnome-themes-extra" "xdg-desktop-portal-gtk" "kvantum" "papirus-icon-theme")
+AUR_DEPS=("gtk2" "gtk-engine-murrine")
+
+get_aur_helper() {
+    if command -v yay &>/dev/null; then
+        echo "yay"
+    elif command -v paru &>/dev/null; then
+        echo "paru"
+    else
+        echo ""
+    fi
+}
+
+check_dependencies() {
+    local missing_pacman=()
+    local missing_aur=()
+
+    for dep in "${PACMAN_DEPS[@]}"; do
+        if ! pacman -Qi "$dep" &>/dev/null; then
+            missing_pacman+=("$dep")
+        fi
+    done
+
+    for dep in "${AUR_DEPS[@]}"; do
+        if ! pacman -Qi "$dep" &>/dev/null; then
+            missing_aur+=("$dep")
+        fi
+    done
+
+    if [[ ${#missing_pacman[@]} -gt 0 ]]; then
+        echo "Installing pacman dependencies: ${missing_pacman[*]}"
+        sudo pacman -S --needed "${missing_pacman[@]}"
+    fi
+
+    if [[ ${#missing_aur[@]} -gt 0 ]]; then
+        local aur_helper
+        aur_helper=$(get_aur_helper)
+        if [[ -z "$aur_helper" ]]; then
+            echo "Error: No AUR helper found (yay or paru required)"
+            exit 1
+        fi
+        echo "Installing AUR dependencies: ${missing_aur[*]}"
+
+        # Use system Python to avoid mise/pyenv conflicts with gobject-introspection
+        local original_path="$PATH"
+        export PATH="/usr/bin:$PATH"
+
+        for dep in "${missing_aur[@]}"; do
+            if ! pacman -Qi "$dep" &>/dev/null; then
+                "$aur_helper" -S --needed "$dep"
+            fi
+        done
+
+        export PATH="$original_path"
+    fi
+
+    echo "All dependencies are installed."
+}
+
+install_catppuccin_gtk() {
+    echo "Installing Catppuccin GTK Theme (Blue, Mocha)..."
+
+    # Clean up any previous installation attempt
+    if [[ -d "$GTK_TEMP_DIR" ]]; then
+        echo "Removing existing temp directory..."
+        rm -rf "$GTK_TEMP_DIR"
+    fi
+
+    # Clone the repository
+    echo "Cloning repository..."
+    git clone --depth 1 "$GTK_REPO_URL" "$GTK_TEMP_DIR"
+
+    # Run the install script with Blue accent and Mocha (dark) variant
+    echo "Running install script..."
+    cd "$GTK_TEMP_DIR/themes"
+    ./install.sh -t blue -c dark
+
+    # Rename to custom name
+    rm -rf "$HOME/.themes/Catppuccin-Mocha"
+    mv "$HOME/.themes/Catppuccin-Blue-Dark" "$HOME/.themes/Catppuccin-Mocha"
+
+    # Cleanup
+    echo "Cleaning up..."
+    rm -rf "$GTK_TEMP_DIR"
+
+    echo "Catppuccin GTK Theme installed as 'Catppuccin-Mocha'!"
+}
+
+install_papirus_icons() {
+    echo "Installing Papirus icons with Catppuccin Mocha folders..."
+
+    # Return to a valid directory
+    cd /tmp
+
+    # Clean up any previous installation attempt
+    if [[ -d "$PAPIRUS_FOLDERS_TEMP_DIR" ]]; then
+        echo "Removing existing temp directory..."
+        rm -rf "$PAPIRUS_FOLDERS_TEMP_DIR"
+    fi
+
+    # Clone the catppuccin papirus-folders repository
+    echo "Cloning catppuccin papirus-folders repository..."
+    git clone --depth 1 "$PAPIRUS_FOLDERS_REPO_URL" "$PAPIRUS_FOLDERS_TEMP_DIR"
+
+    # Download papirus-folders script
+    echo "Downloading papirus-folders script..."
+    curl -sLO https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/papirus-folders
+    chmod +x ./papirus-folders
+
+    # Create a copy of Papirus-Dark with catppuccin mocha blue folders
+    echo "Creating Catppuccin-Mocha-Papirus icon theme..."
+    rm -rf "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus"
+    mkdir -p "$HOME/.local/share/icons"
+    cp -r /usr/share/icons/Papirus-Dark "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus"
+
+    # Copy catppuccin colors to the local icon theme
+    echo "Installing Catppuccin folder colors..."
+    # Remove symlinks that conflict with catppuccin directories
+    find "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus" -type l -name "places" -delete
+    find "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus" -maxdepth 1 -type l \( -name "32x32" -o -name "48x48" -o -name "64x64" \) -delete
+    cp -r "$PAPIRUS_FOLDERS_TEMP_DIR/src/"* "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus"
+
+    # Apply catppuccin mocha blue folder color
+    ./papirus-folders -C cat-mocha-blue --theme "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus"
+
+    # Update index.theme name
+    sed -i 's/Name=Papirus-Dark/Name=Catppuccin-Mocha-Papirus/' "$HOME/.local/share/icons/Catppuccin-Mocha-Papirus/index.theme"
+
+    # Cleanup
+    echo "Cleaning up..."
+    rm -rf "$PAPIRUS_FOLDERS_TEMP_DIR"
+    rm -f ./papirus-folders
+
+    echo "Papirus icons installed as 'Catppuccin-Mocha-Papirus'!"
+}
+
+install_kvantum_theme() {
+    echo "Installing Kvantum Catppuccin Mocha Blue theme..."
+
+    # Return to a valid directory
+    cd /tmp
+
+    # Clean up any previous installation attempt
+    if [[ -d "$KVANTUM_TEMP_DIR" ]]; then
+        echo "Removing existing temp directory..."
+        rm -rf "$KVANTUM_TEMP_DIR"
+    fi
+
+    # Clone the repository
+    echo "Cloning repository..."
+    git clone --depth 1 "$KVANTUM_REPO_URL" "$KVANTUM_TEMP_DIR"
+
+    # Install the Mocha Blue theme with custom name
+    echo "Installing theme..."
+    mkdir -p "$HOME/.config/Kvantum"
+    rm -rf "$HOME/.config/Kvantum/catppuccin-mocha"
+    cp -r "$KVANTUM_TEMP_DIR/themes/catppuccin-mocha-blue" "$HOME/.config/Kvantum/catppuccin-mocha"
+
+    # Rename the theme inside the config file
+    sed -i 's/catppuccin-mocha-blue/catppuccin-mocha/g' "$HOME/.config/Kvantum/catppuccin-mocha/catppuccin-mocha-blue.kvconfig"
+    mv "$HOME/.config/Kvantum/catppuccin-mocha/catppuccin-mocha-blue.kvconfig" "$HOME/.config/Kvantum/catppuccin-mocha/catppuccin-mocha.kvconfig"
+    mv "$HOME/.config/Kvantum/catppuccin-mocha/catppuccin-mocha-blue.svg" "$HOME/.config/Kvantum/catppuccin-mocha/catppuccin-mocha.svg"
+
+    # Set as default theme
+    echo "theme=catppuccin-mocha" > "$HOME/.config/Kvantum/kvantum.kvconfig"
+
+    # Cleanup
+    echo "Cleaning up..."
+    rm -rf "$KVANTUM_TEMP_DIR"
+
+    echo "Kvantum theme installed as 'catppuccin-mocha'!"
+}
+
+check_dependencies
+install_catppuccin_gtk
+install_papirus_icons
+install_kvantum_theme
