@@ -37,3 +37,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Plugins
 source /usr/share/zsh-antidote/antidote.zsh
 antidote load ~/.config/antidote/plugins.txt
+
+# Worktree picker
+source ~/dotfiles-v2/scripts/wt.zsh
