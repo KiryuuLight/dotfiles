@@ -6,7 +6,7 @@
   "height": 28,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["battery", "cpu", "memory", "network", "tray", "pulseaudio"],
+  "modules-right": ["battery", "backlight", "cpu", "memory", "network", "tray", "pulseaudio"],
 
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -49,6 +49,12 @@
     "on-click": "auto-cpufreq-gtk"
   },
 
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "󰖨  {percent}%",
+    "tooltip": true
+  },
+
   "network": {
     "tooltip": true,
     "format-wifi": "  {essid}",
@@ -60,7 +66,7 @@
   "pulseaudio": {
     "format": "{icon}  {volume}%",
     "tooltip": true,
-    "format-muted": "󰖁   {format_source}",
+    "format-muted": "󰖁 {format_source}",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
