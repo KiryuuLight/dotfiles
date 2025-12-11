@@ -13,7 +13,7 @@ return {
       },
       ignore_focus = {},
       always_divide_middle = true,
-      globalstatus = false,
+      globalstatus = true,
       refresh = {
         statusline = 1000,
         tabline = 1000,
@@ -39,7 +39,7 @@ return {
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = { { 'filename', path = 2 } },
+      lualine_c = { { 'filename', path = 0, shorting_target = 0 } },
       lualine_x = { 'location' },
       lualine_y = {},
       lualine_z = {},
