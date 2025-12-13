@@ -2,8 +2,12 @@
 gtk-engine-murrine
 
 # Tools
-hyprshot
-bob
 mise-bin
 iwgtk
 auto-cpufreq-gtk
+
+# Shell
+zsh-antidote
+
+# Hyprland
+wlogout

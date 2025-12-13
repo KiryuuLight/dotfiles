@@ -6,7 +6,6 @@ curl
 
 # Shell
 zsh
-zsh-antidote
 fzf
 zoxide
 starship
@@ -19,7 +18,6 @@ hyprpaper
 waybar
 rofi
 mako
-wlogout
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 jq
@@ -29,6 +27,10 @@ kitty
 neovim
 lazygit
 zellij
+bob
+
+# Screenshots
+hyprshot
 
 # Audio/brightness
 pamixer
