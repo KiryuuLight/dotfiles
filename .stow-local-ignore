@@ -21,3 +21,9 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+
+# Setup files
+^/justfile
+^/packages
+^/sddm
+^/install

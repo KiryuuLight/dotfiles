@@ -1,0 +1,60 @@
+# Core
+git
+stow
+base-devel
+curl
+
+# Shell
+zsh
+zsh-antidote
+fzf
+zoxide
+starship
+bat
+eza
+
+# Hyprland ecosystem
+hyprland
+hyprpaper
+waybar
+rofi
+mako
+wlogout
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+jq
+
+# Terminal & Editor
+kitty
+neovim
+lazygit
+zellij
+
+# Audio/brightness
+pamixer
+brightnessctl
+
+# Theme dependencies
+sassc
+gnome-themes-extra
+kvantum
+papirus-icon-theme
+qt6-svg
+
+# Apps
+firefox
+dolphin
+
+# Waybar click actions
+gnome-calendar
+gnome-system-monitor
+pavucontrol
+
+# SDDM
+sddm
+qt6-virtualkeyboard
+qt6-multimedia-ffmpeg
+imagemagick
+
+# Fonts
+ttf-jetbrains-mono-nerd
