@@ -39,7 +39,8 @@ themes:
 
 # Symlink dotfiles with stow
 stow:
-    stow -v -R -t ~ .
+    stow --adopt -v -R -t ~ .
+    git restore .
 
 # SDDM login screen setup (requires sudo)
 sddm:
