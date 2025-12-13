@@ -26,7 +26,7 @@ packages-aur:
         exit 1
     fi
     echo "Installing AUR packages with $aur_helper..."
-    grep -v '^#' packages/aur.txt | grep -v '^$' | xargs $aur_helper -S --needed
+    grep -v '^#' packages/aur.txt | grep -v '^$' | xargs $aur_helper -S --needed --noconfirm || true
 
 # Install global npm packages (requires mise + node)
 npm-tools:
