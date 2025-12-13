@@ -2,9 +2,8 @@
 gtk-engine-murrine
 
 # Tools
-mise-bin
 iwgtk
-auto-cpufreq-gtk
+auto-cpufreq
 
 # Shell
 zsh-antidote

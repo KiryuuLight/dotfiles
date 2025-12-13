@@ -28,6 +28,7 @@ neovim
 lazygit
 zellij
 bob
+mise
 
 # Screenshots
 hyprshot
