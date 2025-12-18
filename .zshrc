@@ -7,7 +7,7 @@ eval "$(zoxide init zsh)"
 # Editor
 export EDITOR='nvim'
 # Mise
-eval "$(/home/light/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh)"
 # Starship
 export STARSHIP_CONFIG=/home/light/.config/starship/starship.toml
 eval "$(starship init zsh)"
