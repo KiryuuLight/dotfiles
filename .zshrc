@@ -1,3 +1,4 @@
+export PATH="$HOME/.local/bin:$PATH"
 # FZF
 source <(fzf --zsh)
 # Bob Nvim Manager
@@ -37,6 +38,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # Plugins
 source /usr/share/zsh-antidote/antidote.zsh
 antidote load ~/.config/antidote/plugins.txt
+
+# Autosuggestion keybindings
+bindkey '^E' end-of-line              # Ctrl+E: accept full suggestion
+bindkey '^F' forward-word             # Ctrl+F: accept next word
 
 # Worktree picker
 source ~/dotfiles-v2/scripts/wt.zsh
