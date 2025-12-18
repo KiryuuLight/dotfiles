@@ -4,8 +4,8 @@
 default:
     @just --list
 
-# Full setup: packages -> stow -> shell -> npm tools -> themes
-setup: packages stow shell npm-tools themes
+# Full setup: packages -> stow -> shell -> npm tools -> themes -> sddm
+setup: packages stow shell npm-tools themes sddm
     @echo "Setup complete!"
 
 # Install all packages (pacman + AUR)
