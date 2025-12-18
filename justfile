@@ -4,8 +4,8 @@
 default:
     @just --list
 
-# Full setup: packages -> stow -> npm tools -> themes
-setup: packages stow npm-tools themes
+# Full setup: packages -> stow -> shell -> npm tools -> themes
+setup: packages stow shell npm-tools themes
     @echo "Setup complete!"
 
 # Install all packages (pacman + AUR)
@@ -41,6 +41,17 @@ themes:
 stow:
     stow --adopt -v -R -t ~ .
     git restore .
+
+# Set zsh as default shell
+shell:
+    #!/usr/bin/env bash
+    if [[ "$SHELL" != */zsh ]]; then
+        echo "Setting zsh as default shell..."
+        chsh -s /usr/bin/zsh
+        echo "Shell changed. Log out and back in for it to take effect."
+    else
+        echo "zsh is already the default shell"
+    fi
 
 # SDDM login screen setup (requires sudo)
 sddm:
