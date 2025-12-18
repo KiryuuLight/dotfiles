@@ -39,6 +39,7 @@ pipewire-pulse
 wireplumber
 pamixer
 brightnessctl
+swayosd
 
 # Theme dependencies
 sassc

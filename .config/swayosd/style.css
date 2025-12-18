@@ -1,0 +1,34 @@
+window {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(30, 30, 46, 0.9);
+}
+
+#container {
+  margin: 2px;
+}
+
+image {
+  -gtk-icon-size: 12px;
+  min-width: 12px;
+  min-height: 12px;
+}
+
+progressbar {
+  min-height: 3px;
+  min-width: 80px;
+}
+
+progressbar trough {
+  min-height: 3px;
+  background: rgba(69, 71, 90, 0.8);
+}
+
+progressbar progress {
+  min-height: 3px;
+  background: #cba6f7;
+}
+
+label {
+  font-size: 9px;
+}
