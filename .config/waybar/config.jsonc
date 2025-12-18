@@ -60,7 +60,7 @@
     "format-wifi": "  {essid}",
     "format-ethernet": "{cidr} ",
     "format-disconnected": "Disconnected ⚠",
-    "on-click": "iwgtk"
+    "on-click": "command -v iwgtk &>/dev/null && iwgtk || nm-connection-editor"
   },
 
   "pulseaudio": {

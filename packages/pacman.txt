@@ -34,6 +34,9 @@ mise
 hyprshot
 
 # Audio/brightness
+pipewire
+pipewire-pulse
+wireplumber
 pamixer
 brightnessctl
 
@@ -52,6 +55,7 @@ dolphin
 gnome-calendar
 gnome-system-monitor
 pavucontrol
+nm-connection-editor
 
 # SDDM
 sddm
