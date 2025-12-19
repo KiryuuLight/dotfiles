@@ -4,8 +4,8 @@
 default:
     @just --list
 
-# Full setup: packages -> stow -> shell -> npm tools -> themes -> sddm
-setup: packages stow shell npm-tools themes sddm
+# Full setup: packages -> stow -> shell -> npm tools -> themes -> sddm -> firefox
+setup: packages stow shell npm-tools themes sddm firefox-theme
     @echo "Setup complete!"
 
 # Install all packages (pacman + AUR)
@@ -56,3 +56,7 @@ shell:
 # SDDM login screen setup (requires sudo)
 sddm:
     ./sddm/setup.sh
+
+# Firefox Catppuccin Mocha Blue theme
+firefox-theme:
+    ./scripts/firefox-theme.sh
