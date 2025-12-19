@@ -44,7 +44,16 @@ sudo tee "$POLICY_FILE" > /dev/null << 'EOF'
 }
 EOF
 
-echo "Extensions configured. They will install on next Firefox start."
+echo "Extensions configured."
+echo ""
+
+# Launch each profile briefly to trigger extension installation
+echo "Installing extensions in all profiles..."
+for profile in "luis" "work"; do
+    echo "  Installing extensions in '$profile' profile..."
+    timeout 10 firefox -P "$profile" --headless 2>/dev/null || true
+done
+
 echo ""
 echo "Opening Firefox to apply Catppuccin Mocha Blue theme..."
 echo "Click 'Install' when prompted for Firefox Color extension."
