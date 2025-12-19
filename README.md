@@ -13,7 +13,7 @@ git clone https://aur.archlinux.org/yay.git /tmp/yay
 cd /tmp/yay && makepkg -si
 
 # Clone and setup dotfiles
-git clone git@github.com:KiryuuLight/dotfiles-v2.git ~/dotfiles-v2
+git clone https://github.com/KiryuuLight/dotfiles-v2.git ~/dotfiles-v2
 cd ~/dotfiles-v2
 just setup
 ```
