@@ -50,7 +50,7 @@ qt6-svg
 
 # Apps
 firefox
-dolphin
+thunar
 
 # Yazi file manager
 yazi
