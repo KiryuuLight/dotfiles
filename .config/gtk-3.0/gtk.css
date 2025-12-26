@@ -1,0 +1,35 @@
+/* Catppuccin Mocha overrides for consistent dark backgrounds */
+
+/* Main view backgrounds */
+.view,
+iconview,
+.iconview,
+treeview.view,
+textview.view text {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+/* Selection colors - use blue accent */
+.view:selected,
+iconview:selected,
+.iconview:selected,
+treeview.view:selected,
+row:selected {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+}
+
+/* Sidebar selection */
+.sidebar row:selected,
+placessidebar row:selected {
+    background-color: #45475a;
+    color: #cdd6f4;
+}
+
+/* Rubberband selection */
+.rubberband,
+rubberband {
+    background-color: alpha(#89b4fa, 0.3);
+    border: 1px solid #89b4fa;
+}
