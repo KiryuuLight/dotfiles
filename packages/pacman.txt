@@ -51,6 +51,7 @@ qt6-svg
 # Apps
 firefox
 thunar
+libreoffice-fresh
 
 # Yazi file manager
 yazi
