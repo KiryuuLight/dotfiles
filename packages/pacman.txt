@@ -52,6 +52,15 @@ qt6-svg
 firefox
 dolphin
 
+# Yazi file manager
+yazi
+ueberzugpp
+ffmpegthumbnailer
+fd
+p7zip
+poppler
+chafa
+
 # Clipboard
 wl-clipboard
 cliphist

@@ -45,3 +45,18 @@ bindkey '^F' forward-word             # Ctrl+F: accept next word
 
 # Worktree picker
 source ~/dotfiles-v2/scripts/wt.zsh
+
+# Yazi wrapper (proper image cleanup and cd on exit)
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  # Force Überzug++ in Zellij, native Kitty otherwise
+  if [[ -n "$ZELLIJ" ]]; then
+    TERM=xterm-kitty yazi "$@" --cwd-file="$tmp"
+  else
+    yazi "$@" --cwd-file="$tmp"
+  fi
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
