@@ -52,6 +52,10 @@ qt6-svg
 firefox
 dolphin
 
+# Clipboard
+wl-clipboard
+cliphist
+
 # Waybar click actions
 gnome-calendar
 gnome-system-monitor
