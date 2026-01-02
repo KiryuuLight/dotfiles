@@ -1,0 +1,6 @@
+#!/bin/sh
+# Mirror displays for login screen (desktop with dual monitors)
+if /usr/bin/xrandr | grep -q "DisplayPort-0 connected"; then
+    /usr/bin/xrandr --output DisplayPort-0 --mode 1920x1080 --rate 60 --pos 0x0 --primary \
+                    --output DisplayPort-1 --mode 1920x1080 --rate 60 --pos 0x0
+fi

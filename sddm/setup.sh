@@ -30,6 +30,13 @@ copy_files () {
     sudo cp -rf "$SHPATH"/. /usr/share/sddm/themes/${THEME_NAME}/
 }
 
+setup_xsetup () {
+    echo -e "${grey}Setting up Xsetup script for multi-monitor support...${reset}"
+    sudo mkdir -p /usr/share/sddm/scripts
+    sudo cp "$SHPATH/scripts/Xsetup" /usr/share/sddm/scripts/Xsetup
+    sudo chmod +x /usr/share/sddm/scripts/Xsetup
+}
+
 apply_theme () {
     echo -e "${grey}Editing '/etc/sddm.conf'...${reset}"
     if [[ -f /etc/sddm.conf ]]; then
@@ -59,5 +66,6 @@ apply_theme () {
 install_dependencies &&
 copy_files &&
 apply_theme &&
+setup_xsetup &&
 set_avatar &&
 echo -e "\n${green}Theme successfully installed!${reset}"
