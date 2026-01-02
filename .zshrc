@@ -26,7 +26,7 @@ alias ld='eza -lhD --icons=auto'
 alias lt='eza --icons=auto --tree'
 alias p='pnpm'
 alias mkdir='mkdir -p'
-alias config='cd ~/dotfiles-v2/'
+alias config='cd ~/dotfiles/'
 
 # History
 HISTFILE=~/.zsh_history
@@ -44,7 +44,7 @@ bindkey '^E' end-of-line              # Ctrl+E: accept full suggestion
 bindkey '^F' forward-word             # Ctrl+F: accept next word
 
 # Worktree picker
-source ~/dotfiles-v2/scripts/wt.zsh
+source ~/dotfiles/scripts/wt.zsh
 
 # Yazi wrapper (proper image cleanup and cd on exit)
 function y() {
