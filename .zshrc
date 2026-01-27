@@ -50,6 +50,9 @@ bindkey '^F' forward-word             # Ctrl+F: accept next word
 # Worktree picker
 source ~/dotfiles/scripts/wt.zsh
 
+# wtp (worktree plus) - shell hook for cd support
+eval "$(wtp hook zsh)"
+
 # Yazi wrapper (proper image cleanup and cd on exit)
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
