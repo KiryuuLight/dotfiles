@@ -4,7 +4,9 @@ source <(fzf --zsh)
 # Bob Nvim Manager
 export PATH=$PATH:/home/light/.local/share/bob/nvim-bin
 # Zoxide
-eval "$(zoxide init zsh)"
+if [[ "$CLAUDE_CODE" != "1" ]]; then
+  eval "$(zoxide init zsh)"
+fi
 # Editor
 export EDITOR='nvim'
 # Mise
@@ -16,7 +18,9 @@ eval "$(starship init zsh)"
 # Aliases
 alias vim='ESLINT_USE_FLAT_CONFIG=false nvim'
 alias nvim='ESLINT_USE_FLAT_CONFIG=false nvim'
-alias cd='z'
+if [[ "$CLAUDE_CODE" != "1" ]]; then
+  alias cd='z'
+fi
 alias c='clear'
 alias cat='bat' 
 alias l='eza -lh --icons=auto'
