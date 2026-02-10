@@ -10,3 +10,6 @@ zsh-antidote
 
 # Hyprland
 wlogout
+
+# Network
+r8125-dkms

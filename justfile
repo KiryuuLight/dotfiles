@@ -60,3 +60,19 @@ sddm:
 # Firefox Catppuccin Mocha Blue theme
 firefox-theme:
     ./scripts/firefox-theme.sh
+
+# System tweaks: zram, sysctl, earlyoom, r8125 driver (requires sudo)
+system-tweaks:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "Configuring zram (ram/2, zstd)..."
+    printf '[zram0]\nzram-size = ram / 2\ncompression-algorithm = zstd\n' | sudo tee /etc/systemd/zram-generator.conf
+    echo "Configuring sysctl (zram tuning + overcommit)..."
+    printf 'vm.swappiness = 180\nvm.watermark_boost_factor = 0\nvm.watermark_scale_factor = 125\nvm.page-cluster = 0\nvm.overcommit_memory = 0\n' | sudo tee /etc/sysctl.d/99-vm-zram-parameters.conf
+    echo "Configuring earlyoom..."
+    sudo sed -i 's/^EARLYOOM_ARGS=.*/EARLYOOM_ARGS="-m 5 -s 5 --prefer '"'"'(^|\\/)(node|claude)$$'"'"' --avoid '"'"'(^|\\/)(Xorg|Xwayland|sway|hyprland|sshd|systemd)$$'"'"' -n"/' /etc/default/earlyoom
+    sudo systemctl enable --now earlyoom
+    echo "Blacklisting r8169 (using r8125 driver instead)..."
+    printf 'blacklist r8169\n' | sudo tee /etc/modprobe.d/blacklist-r8169.conf
+    sudo dkms autoinstall
+    echo "Done! Reboot to apply zram + sysctl changes."

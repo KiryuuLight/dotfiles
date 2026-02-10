@@ -79,5 +79,9 @@ qt6-virtualkeyboard
 qt6-multimedia-ffmpeg
 imagemagick
 
+# System protection
+earlyoom
+linux-headers
+
 # Fonts
 ttf-jetbrains-mono-nerd
