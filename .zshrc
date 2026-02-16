@@ -29,6 +29,7 @@ alias ll='eza -lha --icons=auto --sort=name --group-directories-first'
 alias ld='eza -lhD --icons=auto'
 alias lt='eza --icons=auto --tree'
 alias p='pnpm'
+alias claude='systemd-run --user --scope -p MemoryMax=20G -p MemoryHigh=16G -- claude'
 alias mkdir='mkdir -p'
 alias config='cd ~/dotfiles/'
 
@@ -67,3 +68,6 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+# opencode
+export PATH=/home/light/.opencode/bin:$PATH
