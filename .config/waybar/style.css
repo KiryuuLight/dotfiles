@@ -62,3 +62,37 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
+
+/* Calendar tooltip */
+tooltip {
+  background-color: @crust;
+  border: 1px solid @surface1;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+tooltip label {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 14px;
+  color: @text;
+}
+
+#clock {
+  font-size: 12px;
+}
+
+#calendar {
+  padding: 4px;
+}
+
+#calendar.header {
+  color: @blue;
+  font-weight: bold;
+}
+
+#calendar.today {
+  color: @crust;
+  background-color: @blue;
+  border-radius: 4px;
+  font-weight: bold;
+}

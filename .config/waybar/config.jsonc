@@ -20,8 +20,15 @@
   },
 
   "clock": {
-    "format": "{:%A %H:%M}",
-    "tooltip-format": "{:%A, %B %d, %Y at %H:%M}",
+    "format": "{:%A %I:%M %p}",
+    "tooltip-format": "<tt><span size='large'>{calendar}</span></tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "",
+      "format": {
+        "today": "<b><u>{}</u></b>"
+      }
+    },
     "on-click": "gnome-calendar"
   },
 
