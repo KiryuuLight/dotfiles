@@ -1,9 +1,10 @@
 {
-  "enabledPlugins": {
-    "superpowers@superpowers-marketplace": true
-  },
   "env": {
     "CLAUDE_CODE": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   },
   "hooks": {
     "Notification": [
@@ -12,7 +13,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "notify-send 'Claude Code' 'Waiting for input' && paplay /usr/share/sounds/freedesktop/stereo/message.oga"
+            "command": "timeout 5s notify-send 'Claude Code' 'Waiting for input' && timeout 5s paplay /usr/share/sounds/freedesktop/stereo/message.oga"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "timeout 2s zellij pipe --name \"zellij-attention::waiting::$ZELLIJ_PANE_ID\""
           }
         ]
       }
@@ -22,10 +32,38 @@
         "hooks": [
           {
             "type": "command",
-            "command": "notify-send 'Claude Code' 'Task completed' && paplay /usr/share/sounds/freedesktop/stereo/complete.oga"
+            "command": "timeout 5s notify-send 'Claude Code' 'Task completed' && timeout 5s paplay /usr/share/sounds/freedesktop/stereo/complete.oga"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "timeout 2s zellij pipe --name \"zellij-attention::completed::$ZELLIJ_PANE_ID\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/home/light/.claude/hooks/gsd-check-update.js\""
           }
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
 }
