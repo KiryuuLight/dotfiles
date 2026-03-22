@@ -226,7 +226,7 @@ plugins {
         format_hide_on_overlength true
         format_left "{mode}#[bg=$mantle] {tabs}"
         format_precedence "lrc"
-        format_right "{command_attention}"
+        format_right ""
         format_space "#[bg=$mantle]"
         
         mode_enter_search "#[bg=$flamingo,fg=$crust,bold] ENT-SEARCH#[bg=$surfaco,fg=$flamingo]█"
@@ -262,17 +262,12 @@ plugins {
         tab_separator "#[bg=$mantle] "
         tab_sync_indicator " "
 
-        // zellij-attention notification indicators (reads from home dir)
-        command_attention_command "bash -c 'cat ~/.zellij-attention-status 2>/dev/null || echo TEST'"
-        command_attention_format "{stdout}"
-        command_attention_interval "1"
-        command_attention_rendermode "dynamic"
     }
 }
 
 load_plugins {
-    "file:/home/light/.config/zellij/plugins/zellij-attention.wasm" {
+    "file:~/.config/zellij/plugins/zellij-attention.wasm" {
+        enabled "true"
     }
 }
- 
- 
+
