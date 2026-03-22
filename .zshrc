@@ -30,6 +30,8 @@ alias ld='eza -lhD --icons=auto'
 alias lt='eza --icons=auto --tree'
 alias p='pnpm'
 alias claude='systemd-run --user --scope -p MemoryMax=20G -p MemoryHigh=16G -- claude'
+alias claudey='systemd-run --user --scope -p MemoryMax=20G -p MemoryHigh=16G -- claude --dangerously-skip-permissions'
+alias claudeh='systemd-run --user --scope -p MemoryMax=20G -p MemoryHigh=16G -- claude --model claude-haiku-4-5-20251001'
 alias mkdir='mkdir -p'
 alias config='cd ~/dotfiles/'
 
@@ -71,3 +73,10 @@ function y() {
 
 # opencode
 export PATH=/home/light/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/home/light/.bun/_bun" ] && source "/home/light/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
