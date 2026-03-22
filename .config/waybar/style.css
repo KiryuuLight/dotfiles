@@ -5,6 +5,9 @@
   font-family: "JetBrainsMono Nerd Font", monospace;
   font-size: 12px;
   background-color: @crust;
+}
+
+window#waybar {
   color: @blue;
 }
 
@@ -61,6 +64,20 @@
   animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+/* Media player */
+#custom-mpris {
+  margin-right: 20px;
+}
+
+#custom-mpris label {
+  color: @green;
+  padding: 0 10px;
+}
+
+#custom-mpris.paused label {
+  color: @overlay0;
 }
 
 /* Calendar tooltip */

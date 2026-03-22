@@ -6,7 +6,15 @@
   "height": 28,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["battery", "backlight", "cpu", "memory", "network", "tray", "pulseaudio"],
+  "modules-right": ["custom/mpris", "battery", "backlight", "cpu", "memory", "network", "tray", "pulseaudio"],
+
+  "custom/mpris": {
+    "exec": "~/scripts/waybar-mpris.sh",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous"
+  },
 
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -35,7 +43,7 @@
   "cpu": {
     "format": "  {usage}%",
     "max-length": 8,
-    "on-click": "gnome-system-monitor"
+    "on-click": "kitty --class btop-float -e btop"
   },
 
   "memory": {
