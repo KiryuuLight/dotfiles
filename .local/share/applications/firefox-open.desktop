@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Firefox (Profile-Aware)
+Exec=/home/light/scripts/open-url.sh %u
+Type=Application
+MimeType=x-scheme-handler/http;x-scheme-handler/https;text/html;
+NoDisplay=true
