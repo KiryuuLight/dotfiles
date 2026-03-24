@@ -105,6 +105,25 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
   fi
 fi
 
+# -- Rate limits (Pro/Max only) --
+five_h=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+
+if [ -n "$five_h" ]; then
+  five_h_int=${five_h%.*}
+
+  if [ "$five_h_int" -lt 50 ]; then
+    lim_c="$c_green"
+  elif [ "$five_h_int" -lt 75 ]; then
+    lim_c="$c_yellow"
+  elif [ "$five_h_int" -lt 90 ]; then
+    lim_c="$c_peach"
+  else
+    lim_c="$c_red"
+  fi
+
+  echo -n "${sep}${lim_c}5h: ${five_h_int}% used${c_rst}"
+fi
+
 # -- Cost --
 if [ -n "$cost" ] && [ "$cost" != "0" ]; then
   cost_fmt=$(printf '%.2f' "$cost")
