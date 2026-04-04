@@ -10,6 +10,7 @@ local tools = {
   'ruff',
   'black',
   'gopls',
+  'biome',
 }
 
 return tools

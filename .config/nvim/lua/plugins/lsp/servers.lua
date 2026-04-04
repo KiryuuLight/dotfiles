@@ -1,6 +1,7 @@
 local lspconfig = require 'lspconfig'
 
 local servers = {
+  biome = {},
   ['eslint-lsp'] = {
     settings = {
       workingDirectories = { mode = 'auto' },
