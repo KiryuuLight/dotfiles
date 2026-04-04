@@ -66,18 +66,18 @@ window#waybar {
   animation-direction: alternate;
 }
 
-/* Media player */
-#custom-mpris {
-  margin-right: 20px;
+/* Recording indicator */
+#custom-recording {
+  padding: 0 7px;
 }
 
-#custom-mpris label {
-  color: @green;
-  padding: 0 10px;
+#custom-recording.recording {
+  color: @red;
+  animation: blink 1s ease-in-out infinite;
 }
 
-#custom-mpris.paused label {
-  color: @overlay0;
+@keyframes blink-rec {
+  50% { opacity: 0.5; }
 }
 
 /* Calendar tooltip */

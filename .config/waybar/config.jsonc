@@ -6,17 +6,16 @@
   "height": 28,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/mpris", "battery", "backlight", "cpu", "memory", "network", "tray", "pulseaudio"],
+  "modules-right": ["custom/recording", "battery", "backlight", "cpu", "memory", "network", "tray", "pulseaudio"],
 
-  "custom/mpris": {
-    "exec": "~/scripts/waybar-mpris.sh",
+  "custom/recording": {
+    "exec": "~/scripts/waybar-record.sh status",
     "return-type": "json",
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl next",
-    "on-click-middle": "playerctl previous"
+    "signal": 8,
+    "on-click": "setsid ~/scripts/waybar-record.sh toggle &"
   },
 
-  "hyprland/workspaces": {
+"hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "sort-by-number": true,
